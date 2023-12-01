@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2023 a las 15:22:37
+-- Tiempo de generación: 01-12-2023 a las 22:49:37
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -137,7 +137,7 @@ CREATE TABLE `cat_persona` (
   `fecha_nacimiento` datetime(6) DEFAULT NULL,
   `direccion` varchar(255) DEFAULT NULL,
   `correo` varchar(50) NOT NULL,
-  `celular` varchar(15) NOT NULL,
+  `celular` varchar(15) DEFAULT NULL,
   `estado` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -148,7 +148,8 @@ CREATE TABLE `cat_persona` (
 INSERT INTO `cat_persona` (`codigo`, `identificacion`, `cedula`, `nombres`, `apellidos`, `fecha_nacimiento`, `direccion`, `correo`, `celular`, `estado`) VALUES
 (1, '1707025746', NULL, 'VICENTE JAVIER', 'BRITO ARIAS', '1961-05-12 00:00:00.000000', 'venezuela y san nicolas Terracota B casa 30', 'vjbritoa@hotmail.com', '0992752367', 'A'),
 (2, '1718092487', NULL, 'DARIO XAVIER', 'BRITO LÓPEZ', '1989-08-19 00:00:00.000000', 'VENEZUELA Y VIÑEDOS TERRACOTA B CASA 30', 'dxbritol@gmail.com', '0995038551', 'A'),
-(3, '1721498838', NULL, 'DAVID SANTIAGO', 'BRITO LÓPEZ', '1993-01-13 01:00:00.000000', 'VENEZUELA Y VIÑEDOS', 'davidsbritol@gmail.com', '0998069137', 'A');
+(3, '1721498838', NULL, 'DAVID SANTIAGO', 'BRITO LÓPEZ', '1993-01-13 01:00:00.000000', 'VENEZUELA Y VIÑEDOS', 'davidsbritol@gmail.com', '0998069137', 'A'),
+(4, 'vjbritoa@hotmail.com', NULL, 'David', 'Brito', NULL, NULL, 'vjbritoa@hotmail.com', NULL, 'A');
 
 -- --------------------------------------------------------
 
@@ -258,7 +259,8 @@ INSERT INTO `seg_aplicacion` (`codigo`, `prefijo`, `nombre`, `descripcion`, `tip
 (1, 'SEG', 'Seguridades', 'Seguridades MinEduc', '1', '/asedinfo-servicios', 'A', NULL, NULL),
 (2, 'VEN', 'VENTAS', 'VENTAS DE PRODUCTOS Y SERVICIOS', '1', '/asedinfo-servicios', 'A', NULL, NULL),
 (3, 'AHO', 'AHORROS', 'AHORROS', '1', '/asedinfo-servicios', 'A', NULL, NULL),
-(4, 'CAT', 'CATALOGO', 'CATALOGO DE TODOS LOS APLICATIVOS', '1', '/asedinfo-servicios', 'A', NULL, NULL);
+(4, 'CAT', 'CATALOGO', 'CATALOGO DE TODOS LOS APLICATIVOS', '1', '/asedinfo-servicios', 'A', NULL, NULL),
+(5, 'COM', 'COMPETENCIA', 'COMPETENCIA 2024', '1', '/asedinfo-servicios', 'A', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -356,13 +358,16 @@ INSERT INTO `seg_recurso` (`codigo`, `nombre`, `descripcion`, `url`, `codigo_pad
 (7, 'Usuarios', 'Administración de Usuarios', 'pages/seguridad/usuario', 1, 2, 'A', 1),
 (8, 'Usuario Rol Aplicación', 'Usuario por Roly por Aplicación', 'pages/seguridad/usuarioRolAplicacion', 1, 2, 'A', 1),
 (9, 'Venta', 'Administración Venta', '#', NULL, 1, 'A', 2),
-(10, 'Datos cliente', 'Gestión de datos del cliente', 'pages/venta/cliente', 9, 2, 'A', 2),
+(10, 'Datos cliente', 'Gestión datos cliente', 'pages/venta/cliente', 9, 2, 'A', 2),
 (11, 'Ahorro', 'Administración Ahorro', '#', NULL, 1, 'A', 3),
 (12, 'Datos socio', 'Gestión datos socio', 'pages/ahorro/socio', 11, 2, 'A', 3),
 (13, 'Catálogo', 'Catálogo', '#', NULL, 1, 'A', 4),
 (14, 'Datos persona', 'Gestión datos persona', '/pages/catalogo/persona', 13, 2, 'A', 4),
 (15, 'Datos producto', 'Gestión datos producto', '/pages/catalogo/producto', 13, 2, 'A', 4),
-(16, 'Datos transacción', 'Gestión datos transacción', '/pages/venta/transaccion', 9, 2, 'A', 2);
+(16, 'Datos transacción', 'Gestión datos transacción', '/pages/venta/transaccion', 9, 2, 'A', 2),
+(17, 'Competencia', 'Administración Competencia', '#', 17, 1, 'A', 5),
+(18, 'Participante', 'Gestión datos participante', 'pages/competencia/participante', 17, 1, 'A', 5),
+(19, 'Puntaje', 'Gestión datos puntaje', 'pages/competencia/puntaje', 17, 1, 'A', 5);
 
 -- --------------------------------------------------------
 
@@ -393,7 +398,8 @@ INSERT INTO `seg_rol_aplicacion` (`codigo`, `cod_aplicacion`, `nombre`, `descrip
 (6, 3, 'ADMINISTRADOR GENERAL', 'SUPER ADMINISTRADOR PARA EL SISTEMA DE VENTAS Y ENCARGADO DE CREAR USUARIOS SU ROL Y PERFIL', 'A', 'ADMINISTRADOR_GENERAL', NULL),
 (7, 3, 'ADMINISTRADOR OPERATIVO', 'ADMINISTRADOR QUE SE ENCARGA DE CREAR USUARIOS PARA UNA APLICACIÓN ESPECÍFICA', 'A', 'ADMINISTRADOR_OPERATIVO', NULL),
 (8, 3, 'ADMINISTRADOR APLICACIÓN', 'ADMINISTRADOR APLICACIÓN', 'A', 'ADMINISTRADOR_APLICACION', NULL),
-(9, 4, 'ADMINISTRADOR GENERAL', 'ADMINISTRADOR GENERAL PARA TODOS LOS APLICATIVOS', 'A', 'ADMINISTRADOR_GENERAL', NULL);
+(9, 4, 'ADMINISTRADOR GENERAL', 'ADMINISTRADOR GENERAL PARA TODOS LOS APLICATIVOS', 'A', 'ADMINISTRADOR_GENERAL', NULL),
+(10, 5, 'ADMINISTRADOR GENERAL', 'SUPER ADMINISTRADOR PARA EL SISTEMA DE VENTAS Y ENCARGADO DE CREAR USUARIOS SU ROL Y PERFIL', 'A', 'ADMINISTRADOR_GENERAL', NULL);
 
 -- --------------------------------------------------------
 
@@ -442,7 +448,10 @@ INSERT INTO `seg_rol_aplicacion_recurso` (`codigo`, `codigo_rol_aplicacion`, `co
 (27, 9, 13, 'A'),
 (28, 9, 14, 'A'),
 (29, 9, 15, 'A'),
-(30, 4, 16, 'A');
+(30, 4, 16, 'A'),
+(31, 10, 18, 'A'),
+(32, 10, 19, 'A'),
+(33, 10, 17, 'A');
 
 -- --------------------------------------------------------
 
@@ -539,7 +548,8 @@ INSERT INTO `seg_usuario_aplicacion` (`codigo`, `cod_aplicacion`, `cod_usuario`,
 (3, 3, 1, 'A', '2023-07-24 16:07:07.771000', NULL),
 (4, 4, 1, 'A', '2023-08-23 12:27:31.906000', NULL),
 (5, 4, 2, 'A', '2023-08-24 11:40:30.781000', NULL),
-(6, 3, 3, 'A', '2023-08-28 10:04:53.199000', NULL);
+(6, 3, 3, 'A', '2023-08-28 10:04:53.199000', NULL),
+(7, 5, 1, 'A', '2023-12-01 16:34:50.111000', NULL);
 
 -- --------------------------------------------------------
 
@@ -634,7 +644,8 @@ INSERT INTO `seg_usuario_rol_aplicacion` (`codigo`, `cod_usuario`, `cod_rol_apli
 (8, 2, 4, '2023-08-24 11:36:15.612000', NULL, 'A'),
 (9, 2, 9, '2023-08-24 11:40:30.902000', NULL, 'A'),
 (10, 1, 4, '2023-08-25 10:05:38.136000', NULL, 'A'),
-(11, 3, 6, '2023-08-28 10:04:53.333000', NULL, 'A');
+(11, 3, 6, '2023-08-28 10:04:53.333000', NULL, 'A'),
+(12, 1, 10, '2023-12-01 16:34:51.603000', NULL, 'A');
 
 -- --------------------------------------------------------
 
@@ -747,15 +758,17 @@ CREATE TABLE `wp_participante` (
   `country` char(2) DEFAULT '',
   `postcode` varchar(20) DEFAULT '',
   `city` varchar(100) DEFAULT '',
-  `state` varchar(100) DEFAULT ''
+  `state` varchar(100) DEFAULT '',
+  `cod_persona` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `wp_participante`
 --
 
-INSERT INTO `wp_participante` (`codigo`, `customer_id`, `user_id`, `username`, `first_name`, `last_name`, `email`, `date_last_active`, `date_registered`, `country`, `postcode`, `city`, `state`) VALUES
-(12, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '');
+INSERT INTO `wp_participante` (`codigo`, `customer_id`, `user_id`, `username`, `first_name`, `last_name`, `email`, `date_last_active`, `date_registered`, `country`, `postcode`, `city`, `state`, `cod_persona`) VALUES
+(12, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 0),
+(13, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 4);
 
 -- --------------------------------------------------------
 
@@ -1024,7 +1037,7 @@ ALTER TABLE `cat_parametro`
 -- AUTO_INCREMENT de la tabla `cat_persona`
 --
 ALTER TABLE `cat_persona`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_producto`
@@ -1042,7 +1055,7 @@ ALTER TABLE `cat_transaccion`
 -- AUTO_INCREMENT de la tabla `seg_aplicacion`
 --
 ALTER TABLE `seg_aplicacion`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=5;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_asignacion_usuario_sede`
@@ -1066,19 +1079,19 @@ ALTER TABLE `seg_inicio_sesion`
 -- AUTO_INCREMENT de la tabla `seg_recurso`
 --
 ALTER TABLE `seg_recurso`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=17;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_rol_aplicacion`
 --
 ALTER TABLE `seg_rol_aplicacion`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=10;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_rol_aplicacion_recurso`
 --
 ALTER TABLE `seg_rol_aplicacion_recurso`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=31;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_sede`
@@ -1102,7 +1115,7 @@ ALTER TABLE `seg_usuario_act_roles_app`
 -- AUTO_INCREMENT de la tabla `seg_usuario_aplicacion`
 --
 ALTER TABLE `seg_usuario_aplicacion`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=7;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_usuario_detalle_accion`
@@ -1120,7 +1133,7 @@ ALTER TABLE `seg_usuario_inact_app`
 -- AUTO_INCREMENT de la tabla `seg_usuario_rol_aplicacion`
 --
 ALTER TABLE `seg_usuario_rol_aplicacion`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=12;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `ven_cliente`
@@ -1150,7 +1163,7 @@ ALTER TABLE `wp_modelo_puntaje`
 -- AUTO_INCREMENT de la tabla `wp_participante`
 --
 ALTER TABLE `wp_participante`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `wp_puntaje`
