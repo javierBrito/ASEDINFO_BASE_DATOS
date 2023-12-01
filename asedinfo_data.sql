@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2023 a las 15:28:13
+-- Tiempo de generación: 01-12-2023 a las 15:22:37
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -659,6 +659,161 @@ INSERT INTO `ven_cliente` (`codigo`, `tipo_cliente`, `fecha_inicio`, `cod_person
 (2, 'mayorista', '2023-08-25 00:00:00.000000', 2, 'A'),
 (3, 'ocasional', '2023-08-28 00:00:00.000000', 3, 'A');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `wp_categoria`
+--
+
+CREATE TABLE `wp_categoria` (
+  `codigo` int(11) NOT NULL,
+  `denominacion` varchar(100) NOT NULL DEFAULT '',
+  `estado` varchar(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `wp_categoria`
+--
+
+INSERT INTO `wp_categoria` (`codigo`, `denominacion`, `estado`) VALUES
+(1, 'Pre Infantil (4-8 años)', 'A'),
+(2, 'Infantil (9-12 años)', 'A'),
+(3, 'Junior (13 a 17 años)', 'A'),
+(4, 'Estudiantes (13 años o más)', 'A'),
+(5, 'Amateur (13 años o más)', 'A'),
+(6, 'Pro-Am', 'A'),
+(7, 'Open (13 años ó +) (Amateur, Semi Pro o Profesional)', 'A'),
+(8, 'Urbano (13 años ó +) (Amateur, Semi Pro o Profesional)', 'A'),
+(9, '1vs1 -INDESTRUCTIBLE-', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `wp_instancia`
+--
+
+CREATE TABLE `wp_instancia` (
+  `codigo` int(11) NOT NULL,
+  `denominacion` varchar(100) DEFAULT '',
+  `estado` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `wp_instancia`
+--
+
+INSERT INTO `wp_instancia` (`codigo`, `denominacion`, `estado`) VALUES
+(1, 'Clasificatoria', 'A'),
+(2, 'Semifinal', 'A'),
+(3, 'Final', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `wp_modelo_puntaje`
+--
+
+CREATE TABLE `wp_modelo_puntaje` (
+  `codigo` int(11) NOT NULL,
+  `denominacion` varchar(100) NOT NULL DEFAULT '',
+  `porcentaje` decimal(5,2) DEFAULT NULL,
+  `estado` varchar(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `wp_modelo_puntaje`
+--
+
+INSERT INTO `wp_modelo_puntaje` (`codigo`, `denominacion`, `porcentaje`, `estado`) VALUES
+(1, 'Movimientos', 50.00, 'A'),
+(2, 'Destrezas', 50.00, 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `wp_participante`
+--
+
+CREATE TABLE `wp_participante` (
+  `codigo` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `username` varchar(60) DEFAULT '',
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `date_last_active` timestamp NULL DEFAULT NULL,
+  `date_registered` timestamp NULL DEFAULT NULL,
+  `country` char(2) DEFAULT '',
+  `postcode` varchar(20) DEFAULT '',
+  `city` varchar(100) DEFAULT '',
+  `state` varchar(100) DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `wp_participante`
+--
+
+INSERT INTO `wp_participante` (`codigo`, `customer_id`, `user_id`, `username`, `first_name`, `last_name`, `email`, `date_last_active`, `date_registered`, `country`, `postcode`, `city`, `state`) VALUES
+(12, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `wp_puntaje`
+--
+
+CREATE TABLE `wp_puntaje` (
+  `codigo` int(11) NOT NULL,
+  `cod_modelo_puntaje` int(11) NOT NULL,
+  `cod_instancia` int(11) NOT NULL,
+  `cod_participante` int(11) NOT NULL,
+  `cod_sub_categoria` int(11) NOT NULL,
+  `puntaje` decimal(5,2) DEFAULT NULL,
+  `estado` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `wp_puntaje`
+--
+
+INSERT INTO `wp_puntaje` (`codigo`, `cod_modelo_puntaje`, `cod_instancia`, `cod_participante`, `cod_sub_categoria`, `puntaje`, `estado`) VALUES
+(1, 1, 1, 12, 1, 9.00, 'A'),
+(2, 2, 1, 12, 1, 8.00, 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `wp_sub_categoria`
+--
+
+CREATE TABLE `wp_sub_categoria` (
+  `codigo` int(11) NOT NULL,
+  `denominacion` varchar(100) DEFAULT '',
+  `cod_categoria` int(11) NOT NULL,
+  `estado` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `wp_sub_categoria`
+--
+
+INSERT INTO `wp_sub_categoria` (`codigo`, `denominacion`, `cod_categoria`, `estado`) VALUES
+(1, 'Solista Salsa', 1, 'A'),
+(2, 'Pareja Salsa', 1, 'A'),
+(3, 'Pareja Bachata', 1, 'A'),
+(4, 'Solista Salsa Femenino', 2, 'A'),
+(5, 'Solista Salsa Masculino', 2, 'A'),
+(6, 'Solista Bachata Femenino', 2, 'A'),
+(7, 'Solista Bachata Masculino', 2, 'A'),
+(8, 'Pareja Salsa', 2, 'A'),
+(9, 'Pareja Bachata', 2, 'A'),
+(10, 'Same Gender Salsa', 2, 'A'),
+(11, 'Same Gender Bachata', 2, 'A'),
+(12, 'Grupos Salsa (Abierta)', 2, 'A'),
+(13, 'Grupos Bachata (Abierta)', 2, 'A'),
+(14, 'Show Dance (Abierta)', 2, 'A');
+
 --
 -- Índices para tablas volcadas
 --
@@ -801,6 +956,43 @@ ALTER TABLE `ven_cliente`
   ADD PRIMARY KEY (`codigo`);
 
 --
+-- Indices de la tabla `wp_categoria`
+--
+ALTER TABLE `wp_categoria`
+  ADD PRIMARY KEY (`codigo`);
+
+--
+-- Indices de la tabla `wp_instancia`
+--
+ALTER TABLE `wp_instancia`
+  ADD PRIMARY KEY (`codigo`);
+
+--
+-- Indices de la tabla `wp_modelo_puntaje`
+--
+ALTER TABLE `wp_modelo_puntaje`
+  ADD PRIMARY KEY (`codigo`);
+
+--
+-- Indices de la tabla `wp_participante`
+--
+ALTER TABLE `wp_participante`
+  ADD PRIMARY KEY (`codigo`),
+  ADD KEY `email` (`email`);
+
+--
+-- Indices de la tabla `wp_puntaje`
+--
+ALTER TABLE `wp_puntaje`
+  ADD PRIMARY KEY (`codigo`);
+
+--
+-- Indices de la tabla `wp_sub_categoria`
+--
+ALTER TABLE `wp_sub_categoria`
+  ADD PRIMARY KEY (`codigo`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -935,6 +1127,42 @@ ALTER TABLE `seg_usuario_rol_aplicacion`
 --
 ALTER TABLE `ven_cliente`
   MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `wp_categoria`
+--
+ALTER TABLE `wp_categoria`
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `wp_instancia`
+--
+ALTER TABLE `wp_instancia`
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `wp_modelo_puntaje`
+--
+ALTER TABLE `wp_modelo_puntaje`
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `wp_participante`
+--
+ALTER TABLE `wp_participante`
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `wp_puntaje`
+--
+ALTER TABLE `wp_puntaje`
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `wp_sub_categoria`
+--
+ALTER TABLE `wp_sub_categoria`
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
