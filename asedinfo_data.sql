@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2023 a las 22:49:37
+-- Tiempo de generación: 05-12-2023 a las 22:40:36
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -149,7 +149,12 @@ INSERT INTO `cat_persona` (`codigo`, `identificacion`, `cedula`, `nombres`, `ape
 (1, '1707025746', NULL, 'VICENTE JAVIER', 'BRITO ARIAS', '1961-05-12 00:00:00.000000', 'venezuela y san nicolas Terracota B casa 30', 'vjbritoa@hotmail.com', '0992752367', 'A'),
 (2, '1718092487', NULL, 'DARIO XAVIER', 'BRITO LÓPEZ', '1989-08-19 00:00:00.000000', 'VENEZUELA Y VIÑEDOS TERRACOTA B CASA 30', 'dxbritol@gmail.com', '0995038551', 'A'),
 (3, '1721498838', NULL, 'DAVID SANTIAGO', 'BRITO LÓPEZ', '1993-01-13 01:00:00.000000', 'VENEZUELA Y VIÑEDOS', 'davidsbritol@gmail.com', '0998069137', 'A'),
-(4, 'vjbritoa@hotmail.com', NULL, 'David', 'Brito', NULL, NULL, 'vjbritoa@hotmail.com', NULL, 'A');
+(4, 'vjbritoa@hotmail.com', NULL, 'David', 'Brito', NULL, NULL, 'vjbritoa@hotmail.com', NULL, 'A'),
+(5, 'vjbritoa@hotmail.com', NULL, 'David', 'Brito', NULL, NULL, 'vjbritoa@hotmail.com', NULL, 'A'),
+(6, 'vjbritoa@hotmail.com', NULL, 'David', 'Brito', NULL, NULL, 'vjbritoa@hotmail.com', NULL, 'A'),
+(7, 'vjbritoa@hotmail.com', NULL, 'David', 'Brito', NULL, NULL, 'vjbritoa@hotmail.com', NULL, 'A'),
+(8, 'vjbritoa@hotmail.com', NULL, 'David', 'Brito', NULL, NULL, 'vjbritoa@hotmail.com', NULL, 'A'),
+(9, 'vjbritoa@hotmail.com', NULL, 'David', 'Brito', NULL, NULL, 'vjbritoa@hotmail.com', NULL, 'A');
 
 -- --------------------------------------------------------
 
@@ -304,7 +309,13 @@ INSERT INTO `seg_clave_usuario` (`codigo`, `cod_usuario`, `clave`, `fecha_inicio
 (17, 7, '0f3d014eead934bbdbacb62a01dc4831', '2023-08-21 10:43:39.864000', NULL, 'A', NULL),
 (18, 7, '0f3d014eead934bbdbacb62a01dc4831', '2023-08-21 10:44:17.409000', NULL, 'A', NULL),
 (19, 2, '0f3d014eead934bbdbacb62a01dc4831', '2023-08-24 11:35:46.666000', NULL, 'A', NULL),
-(20, 3, '0f3d014eead934bbdbacb62a01dc4831', '2023-08-28 10:04:17.822000', NULL, 'A', NULL);
+(20, 3, '0f3d014eead934bbdbacb62a01dc4831', '2023-08-28 10:04:17.822000', NULL, 'A', NULL),
+(21, 4, '0f3d014eead934bbdbacb62a01dc4831', '2023-12-04 10:09:50.951000', NULL, 'A', NULL),
+(22, 6, '0f3d014eead934bbdbacb62a01dc4831', '2023-12-04 10:33:15.869000', NULL, 'A', NULL),
+(23, 7, '0f3d014eead934bbdbacb62a01dc4831', '2023-12-04 10:33:16.132000', NULL, 'A', NULL),
+(24, 8, '0f3d014eead934bbdbacb62a01dc4831', '2023-12-04 10:52:14.016000', NULL, 'A', NULL),
+(25, 9, '0f3d014eead934bbdbacb62a01dc4831', '2023-12-04 11:16:25.474000', NULL, 'A', NULL),
+(26, 9, '0f3d014eead934bbdbacb62a01dc4831', '2023-12-04 11:18:10.084000', NULL, 'A', NULL);
 
 -- --------------------------------------------------------
 
@@ -366,8 +377,8 @@ INSERT INTO `seg_recurso` (`codigo`, `nombre`, `descripcion`, `url`, `codigo_pad
 (15, 'Datos producto', 'Gestión datos producto', '/pages/catalogo/producto', 13, 2, 'A', 4),
 (16, 'Datos transacción', 'Gestión datos transacción', '/pages/venta/transaccion', 9, 2, 'A', 2),
 (17, 'Competencia', 'Administración Competencia', '#', 17, 1, 'A', 5),
-(18, 'Participante', 'Gestión datos participante', 'pages/competencia/participante', 17, 1, 'A', 5),
-(19, 'Puntaje', 'Gestión datos puntaje', 'pages/competencia/puntaje', 17, 1, 'A', 5);
+(18, 'Participante', 'Gestión datos participante', 'pages/competencia/participante', 17, 2, 'A', 5),
+(19, 'Puntaje', 'Gestión datos puntaje', 'pages/competencia/puntaje', 17, 2, 'A', 5);
 
 -- --------------------------------------------------------
 
@@ -506,7 +517,13 @@ CREATE TABLE `seg_usuario` (
 INSERT INTO `seg_usuario` (`codigo`, `cod_persona`, `cambio_clave`, `actualizacion_datos`, `estado`, `token_cambio_clave`, `fecha_solicitud_clave`, `enum_rol_seg`, `con_asignacion`, `est_inactivar_roles`, `est_activar_roles`, `cod_sede`) VALUES
 (1, 1, 'SI', 'NO', 'A', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 2, 'SI', 'SI', 'A', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 3, 'SI', 'SI', 'A', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 3, 'SI', 'SI', 'A', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 5, 'NO', 'NO', 'A', NULL, '2023-12-04 10:09:50.879000', NULL, NULL, NULL, NULL, NULL),
+(5, 6, 'NO', 'NO', 'A', NULL, '2023-12-04 10:24:49.731000', NULL, NULL, NULL, NULL, NULL),
+(6, 7, 'NO', 'NO', 'A', NULL, '2023-12-04 10:33:15.772000', NULL, NULL, NULL, NULL, NULL),
+(7, 8, 'NO', 'NO', 'A', NULL, '2023-12-04 10:33:16.081000', NULL, NULL, NULL, NULL, NULL),
+(8, 9, 'NO', 'NO', 'A', NULL, '2023-12-04 10:52:13.882000', NULL, NULL, NULL, NULL, NULL),
+(9, 4, 'NO', 'NO', 'A', NULL, '2023-12-04 11:18:09.881000', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -597,7 +614,13 @@ INSERT INTO `seg_usuario_detalle_accion` (`codigo`, `cod_usuario`, `tipo_registr
 (21, 7, 'A', NULL, '0.0.0.0', 1, '2023-08-21 10:43:39.982000', NULL, NULL),
 (22, 7, 'A', NULL, '0.0.0.0', 1, '2023-08-21 10:44:17.789000', NULL, NULL),
 (23, 2, 'A', NULL, '0.0.0.0', 1, '2023-08-24 11:35:46.941000', NULL, NULL),
-(24, 3, 'A', NULL, '0.0.0.0', 1, '2023-08-28 10:04:17.959000', NULL, NULL);
+(24, 3, 'A', NULL, '0.0.0.0', 1, '2023-08-28 10:04:17.959000', NULL, NULL),
+(25, 4, 'A', NULL, '0.0.0.0', 1, '2023-12-04 10:09:51.018000', NULL, NULL),
+(26, 6, 'A', NULL, '0.0.0.0', 1, '2023-12-04 10:33:15.916000', NULL, NULL),
+(27, 7, 'A', NULL, '0.0.0.0', 1, '2023-12-04 10:33:16.169000', NULL, NULL),
+(28, 8, 'A', NULL, '0.0.0.0', 1, '2023-12-04 10:52:14.057000', NULL, NULL),
+(29, 9, 'A', NULL, '0.0.0.0', 1, '2023-12-04 11:16:25.513000', NULL, NULL),
+(30, 9, 'A', NULL, '0.0.0.0', 1, '2023-12-04 11:18:10.133000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -759,16 +782,18 @@ CREATE TABLE `wp_participante` (
   `postcode` varchar(20) DEFAULT '',
   `city` varchar(100) DEFAULT '',
   `state` varchar(100) DEFAULT '',
-  `cod_persona` int(11) NOT NULL
+  `cod_persona` int(11) NOT NULL,
+  `cod_subcategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `wp_participante`
 --
 
-INSERT INTO `wp_participante` (`codigo`, `customer_id`, `user_id`, `username`, `first_name`, `last_name`, `email`, `date_last_active`, `date_registered`, `country`, `postcode`, `city`, `state`, `cod_persona`) VALUES
-(12, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 0),
-(13, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 4);
+INSERT INTO `wp_participante` (`codigo`, `customer_id`, `user_id`, `username`, `first_name`, `last_name`, `email`, `date_last_active`, `date_registered`, `country`, `postcode`, `city`, `state`, `cod_persona`, `cod_subcategoria`) VALUES
+(12, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 1, 1),
+(13, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 4, 1),
+(14, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -781,7 +806,7 @@ CREATE TABLE `wp_puntaje` (
   `cod_modelo_puntaje` int(11) NOT NULL,
   `cod_instancia` int(11) NOT NULL,
   `cod_participante` int(11) NOT NULL,
-  `cod_sub_categoria` int(11) NOT NULL,
+  `cod_subcategoria` int(11) DEFAULT NULL,
   `puntaje` decimal(5,2) DEFAULT NULL,
   `estado` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -790,7 +815,7 @@ CREATE TABLE `wp_puntaje` (
 -- Volcado de datos para la tabla `wp_puntaje`
 --
 
-INSERT INTO `wp_puntaje` (`codigo`, `cod_modelo_puntaje`, `cod_instancia`, `cod_participante`, `cod_sub_categoria`, `puntaje`, `estado`) VALUES
+INSERT INTO `wp_puntaje` (`codigo`, `cod_modelo_puntaje`, `cod_instancia`, `cod_participante`, `cod_subcategoria`, `puntaje`, `estado`) VALUES
 (1, 1, 1, 12, 1, 9.00, 'A'),
 (2, 2, 1, 12, 1, 8.00, 'A');
 
@@ -1037,7 +1062,7 @@ ALTER TABLE `cat_parametro`
 -- AUTO_INCREMENT de la tabla `cat_persona`
 --
 ALTER TABLE `cat_persona`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_producto`
@@ -1067,7 +1092,7 @@ ALTER TABLE `seg_asignacion_usuario_sede`
 -- AUTO_INCREMENT de la tabla `seg_clave_usuario`
 --
 ALTER TABLE `seg_clave_usuario`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=21;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_inicio_sesion`
@@ -1103,7 +1128,7 @@ ALTER TABLE `seg_sede`
 -- AUTO_INCREMENT de la tabla `seg_usuario`
 --
 ALTER TABLE `seg_usuario`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=4;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_usuario_act_roles_app`
@@ -1121,7 +1146,7 @@ ALTER TABLE `seg_usuario_aplicacion`
 -- AUTO_INCREMENT de la tabla `seg_usuario_detalle_accion`
 --
 ALTER TABLE `seg_usuario_detalle_accion`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=25;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_usuario_inact_app`
@@ -1163,7 +1188,7 @@ ALTER TABLE `wp_modelo_puntaje`
 -- AUTO_INCREMENT de la tabla `wp_participante`
 --
 ALTER TABLE `wp_participante`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `wp_puntaje`
