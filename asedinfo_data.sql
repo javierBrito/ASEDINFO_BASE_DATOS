@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2023 a las 22:40:36
+-- Tiempo de generación: 06-12-2023 a las 20:34:06
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -378,7 +378,8 @@ INSERT INTO `seg_recurso` (`codigo`, `nombre`, `descripcion`, `url`, `codigo_pad
 (16, 'Datos transacción', 'Gestión datos transacción', '/pages/venta/transaccion', 9, 2, 'A', 2),
 (17, 'Competencia', 'Administración Competencia', '#', 17, 1, 'A', 5),
 (18, 'Participante', 'Gestión datos participante', 'pages/competencia/participante', 17, 2, 'A', 5),
-(19, 'Puntaje', 'Gestión datos puntaje', 'pages/competencia/puntaje', 17, 2, 'A', 5);
+(19, 'Puntaje', 'Gestión datos puntaje', 'pages/competencia/puntaje', 17, 2, 'A', 5),
+(20, 'Categoría', 'Gestión datos categoría', '/pages/catalogo/categoria', 13, 2, 'A', 4);
 
 -- --------------------------------------------------------
 
@@ -462,7 +463,8 @@ INSERT INTO `seg_rol_aplicacion_recurso` (`codigo`, `codigo_rol_aplicacion`, `co
 (30, 4, 16, 'A'),
 (31, 10, 18, 'A'),
 (32, 10, 19, 'A'),
-(33, 10, 17, 'A');
+(33, 10, 17, 'A'),
+(34, 9, 20, 'A');
 
 -- --------------------------------------------------------
 
@@ -783,17 +785,18 @@ CREATE TABLE `wp_participante` (
   `city` varchar(100) DEFAULT '',
   `state` varchar(100) DEFAULT '',
   `cod_persona` int(11) NOT NULL,
-  `cod_subcategoria` int(11) NOT NULL
+  `cod_subcategoria` int(11) NOT NULL,
+  `cod_instancia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `wp_participante`
 --
 
-INSERT INTO `wp_participante` (`codigo`, `customer_id`, `user_id`, `username`, `first_name`, `last_name`, `email`, `date_last_active`, `date_registered`, `country`, `postcode`, `city`, `state`, `cod_persona`, `cod_subcategoria`) VALUES
-(12, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 1, 1),
-(13, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 4, 1),
-(14, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 9, 1);
+INSERT INTO `wp_participante` (`codigo`, `customer_id`, `user_id`, `username`, `first_name`, `last_name`, `email`, `date_last_active`, `date_registered`, `country`, `postcode`, `city`, `state`, `cod_persona`, `cod_subcategoria`, `cod_instancia`) VALUES
+(12, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 1, 1, 1),
+(13, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 4, 1, 2),
+(14, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 9, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -816,8 +819,16 @@ CREATE TABLE `wp_puntaje` (
 --
 
 INSERT INTO `wp_puntaje` (`codigo`, `cod_modelo_puntaje`, `cod_instancia`, `cod_participante`, `cod_subcategoria`, `puntaje`, `estado`) VALUES
-(1, 1, 1, 12, 1, 9.00, 'A'),
-(2, 2, 1, 12, 1, 8.00, 'A');
+(1, 1, 1, 12, 1, 8.00, 'A'),
+(2, 2, 1, 12, 1, 9.00, 'A'),
+(6, 1, 1, 13, 1, 6.00, 'A'),
+(7, 2, 1, 13, 1, 9.00, 'A'),
+(8, 1, 1, 14, 1, 8.00, 'A'),
+(9, 2, 1, 14, 1, 8.00, 'A'),
+(10, 1, 3, 14, 1, 6.00, 'A'),
+(11, 2, 3, 14, 1, 6.00, 'A'),
+(12, 1, 2, 13, 1, 7.00, 'A'),
+(13, 2, 2, 13, 1, 7.00, 'A');
 
 -- --------------------------------------------------------
 
@@ -1104,7 +1115,7 @@ ALTER TABLE `seg_inicio_sesion`
 -- AUTO_INCREMENT de la tabla `seg_recurso`
 --
 ALTER TABLE `seg_recurso`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=20;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_rol_aplicacion`
@@ -1116,7 +1127,7 @@ ALTER TABLE `seg_rol_aplicacion`
 -- AUTO_INCREMENT de la tabla `seg_rol_aplicacion_recurso`
 --
 ALTER TABLE `seg_rol_aplicacion_recurso`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=34;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_sede`
@@ -1194,7 +1205,7 @@ ALTER TABLE `wp_participante`
 -- AUTO_INCREMENT de la tabla `wp_puntaje`
 --
 ALTER TABLE `wp_puntaje`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `wp_sub_categoria`
