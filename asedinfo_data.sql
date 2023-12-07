@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-12-2023 a las 20:34:06
+-- Tiempo de generación: 07-12-2023 a las 22:08:47
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -119,8 +119,9 @@ INSERT INTO `cat_parametro` (`codigo`, `descripcion`, `valor`, `nemonico`, `valo
 (9, 'Número máximo de Registros a subir en cargas masivas.', 2000, 'MAX_REGISTRO', NULL, NULL),
 (10, 'Edad Máxima.', 70, 'MAX_EDAD', NULL, NULL),
 (11, 'Edad Mínima.', 4, 'MIN_EDAD', NULL, NULL),
-(12, 'Token para envío de whatsapp', 30, 'token', 'GA231108155143', NULL),
-(13, 'Número de celular desde donde se envía los whatsapp', 30, 'celular', '0992752367', NULL);
+(12, 'Token para envío de whatsapp', 30, 'token', 'GA231108155143', 'A'),
+(13, 'Número de celular desde donde se envía los whatsapp', 30, 'celular', '0992752367', 'A'),
+(14, 'INSTANCIA DE LA COMPETENCIA', 1, 'INSTANCIA', '', 'A');
 
 -- --------------------------------------------------------
 
@@ -379,7 +380,9 @@ INSERT INTO `seg_recurso` (`codigo`, `nombre`, `descripcion`, `url`, `codigo_pad
 (17, 'Competencia', 'Administración Competencia', '#', 17, 1, 'A', 5),
 (18, 'Participante', 'Gestión datos participante', 'pages/competencia/participante', 17, 2, 'A', 5),
 (19, 'Puntaje', 'Gestión datos puntaje', 'pages/competencia/puntaje', 17, 2, 'A', 5),
-(20, 'Categoría', 'Gestión datos categoría', '/pages/catalogo/categoria', 13, 2, 'A', 4);
+(20, 'Categoría', 'Gestión datos categoría', '/pages/catalogo/categoria', 13, 2, 'A', 4),
+(21, 'Subcategoría', 'Gestión datos subcategoría', '/pages/catalogo/subcategoria', 13, 2, 'A', 4),
+(22, 'Parámetro', 'Parámetro', '/pages/catalogo/parametro', 13, 2, 'A', 4);
 
 -- --------------------------------------------------------
 
@@ -464,7 +467,9 @@ INSERT INTO `seg_rol_aplicacion_recurso` (`codigo`, `codigo_rol_aplicacion`, `co
 (31, 10, 18, 'A'),
 (32, 10, 19, 'A'),
 (33, 10, 17, 'A'),
-(34, 9, 20, 'A');
+(34, 9, 20, 'A'),
+(35, 9, 21, 'A'),
+(36, 9, 22, 'A');
 
 -- --------------------------------------------------------
 
@@ -762,7 +767,8 @@ CREATE TABLE `wp_modelo_puntaje` (
 
 INSERT INTO `wp_modelo_puntaje` (`codigo`, `denominacion`, `porcentaje`, `estado`) VALUES
 (1, 'Movimientos', 50.00, 'A'),
-(2, 'Destrezas', 50.00, 'A');
+(2, 'Destrezas', 50.00, 'A'),
+(99, 'Totales', 0.00, 'I');
 
 -- --------------------------------------------------------
 
@@ -827,8 +833,10 @@ INSERT INTO `wp_puntaje` (`codigo`, `cod_modelo_puntaje`, `cod_instancia`, `cod_
 (9, 2, 1, 14, 1, 8.00, 'A'),
 (10, 1, 3, 14, 1, 6.00, 'A'),
 (11, 2, 3, 14, 1, 6.00, 'A'),
-(12, 1, 2, 13, 1, 7.00, 'A'),
-(13, 2, 2, 13, 1, 7.00, 'A');
+(12, 1, 2, 13, 1, 8.55, 'A'),
+(13, 2, 2, 13, 1, 8.00, 'A'),
+(18, 99, 1, 12, 1, 8.50, 'A'),
+(22, 99, 2, 13, 1, 8.28, 'A');
 
 -- --------------------------------------------------------
 
@@ -1067,7 +1075,7 @@ ALTER TABLE `cat_operacion`
 -- AUTO_INCREMENT de la tabla `cat_parametro`
 --
 ALTER TABLE `cat_parametro`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=14;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_persona`
@@ -1115,7 +1123,7 @@ ALTER TABLE `seg_inicio_sesion`
 -- AUTO_INCREMENT de la tabla `seg_recurso`
 --
 ALTER TABLE `seg_recurso`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=21;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_rol_aplicacion`
@@ -1127,7 +1135,7 @@ ALTER TABLE `seg_rol_aplicacion`
 -- AUTO_INCREMENT de la tabla `seg_rol_aplicacion_recurso`
 --
 ALTER TABLE `seg_rol_aplicacion_recurso`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=35;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_sede`
@@ -1193,7 +1201,7 @@ ALTER TABLE `wp_instancia`
 -- AUTO_INCREMENT de la tabla `wp_modelo_puntaje`
 --
 ALTER TABLE `wp_modelo_puntaje`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT de la tabla `wp_participante`
@@ -1205,7 +1213,7 @@ ALTER TABLE `wp_participante`
 -- AUTO_INCREMENT de la tabla `wp_puntaje`
 --
 ALTER TABLE `wp_puntaje`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `wp_sub_categoria`
