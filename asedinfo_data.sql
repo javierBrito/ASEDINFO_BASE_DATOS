@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-12-2023 a las 22:08:47
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 09-12-2023 a las 07:08:20
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -121,7 +121,8 @@ INSERT INTO `cat_parametro` (`codigo`, `descripcion`, `valor`, `nemonico`, `valo
 (11, 'Edad Mínima.', 4, 'MIN_EDAD', NULL, NULL),
 (12, 'Token para envío de whatsapp', 30, 'token', 'GA231108155143', 'A'),
 (13, 'Número de celular desde donde se envía los whatsapp', 30, 'celular', '0992752367', 'A'),
-(14, 'INSTANCIA DE LA COMPETENCIA', 1, 'INSTANCIA', '', 'A');
+(14, 'INSTANCIA DE LA COMPETENCIA', 1, 'INSTANCIA', '', 'A'),
+(15, 'SUBCATEGORIA DE LA COMPETENCIA', 1, 'SUBCATEGORIA', '', 'A');
 
 -- --------------------------------------------------------
 
@@ -147,7 +148,7 @@ CREATE TABLE `cat_persona` (
 --
 
 INSERT INTO `cat_persona` (`codigo`, `identificacion`, `cedula`, `nombres`, `apellidos`, `fecha_nacimiento`, `direccion`, `correo`, `celular`, `estado`) VALUES
-(1, '1707025746', NULL, 'VICENTE JAVIER', 'BRITO ARIAS', '1961-05-12 00:00:00.000000', 'venezuela y san nicolas Terracota B casa 30', 'vjbritoa@hotmail.com', '0992752367', 'A'),
+(1, '1707025746', '', 'VICENTE JAVIER', 'BRITO ARIAS', '1961-05-12 00:00:00.000000', 'venezuela y san nicolas Terracota B casa 30', 'vjbritoa@hotmail.com', '0992752367', 'A'),
 (2, '1718092487', NULL, 'DARIO XAVIER', 'BRITO LÓPEZ', '1989-08-19 00:00:00.000000', 'VENEZUELA Y VIÑEDOS TERRACOTA B CASA 30', 'dxbritol@gmail.com', '0995038551', 'A'),
 (3, '1721498838', NULL, 'DAVID SANTIAGO', 'BRITO LÓPEZ', '1993-01-13 01:00:00.000000', 'VENEZUELA Y VIÑEDOS', 'davidsbritol@gmail.com', '0998069137', 'A'),
 (4, 'vjbritoa@hotmail.com', NULL, 'David', 'Brito', NULL, NULL, 'vjbritoa@hotmail.com', NULL, 'A'),
@@ -382,7 +383,8 @@ INSERT INTO `seg_recurso` (`codigo`, `nombre`, `descripcion`, `url`, `codigo_pad
 (19, 'Puntaje', 'Gestión datos puntaje', 'pages/competencia/puntaje', 17, 2, 'A', 5),
 (20, 'Categoría', 'Gestión datos categoría', '/pages/catalogo/categoria', 13, 2, 'A', 4),
 (21, 'Subcategoría', 'Gestión datos subcategoría', '/pages/catalogo/subcategoria', 13, 2, 'A', 4),
-(22, 'Parámetro', 'Parámetro', '/pages/catalogo/parametro', 13, 2, 'A', 4);
+(22, 'Parámetro', 'Parámetro', '/pages/catalogo/parametro', 13, 2, 'A', 4),
+(23, 'Resultado', 'Datos resultado', 'pages/competencia/resultado', 17, 2, 'A', 5);
 
 -- --------------------------------------------------------
 
@@ -469,7 +471,8 @@ INSERT INTO `seg_rol_aplicacion_recurso` (`codigo`, `codigo_rol_aplicacion`, `co
 (33, 10, 17, 'A'),
 (34, 9, 20, 'A'),
 (35, 9, 21, 'A'),
-(36, 9, 22, 'A');
+(36, 9, 22, 'A'),
+(37, 10, 23, 'A');
 
 -- --------------------------------------------------------
 
@@ -572,7 +575,7 @@ INSERT INTO `seg_usuario_aplicacion` (`codigo`, `cod_aplicacion`, `cod_usuario`,
 (3, 3, 1, 'A', '2023-07-24 16:07:07.771000', NULL),
 (4, 4, 1, 'A', '2023-08-23 12:27:31.906000', NULL),
 (5, 4, 2, 'A', '2023-08-24 11:40:30.781000', NULL),
-(6, 3, 3, 'A', '2023-08-28 10:04:53.199000', NULL),
+(6, 5, 3, 'A', '2023-12-09 00:23:17.940000', NULL),
 (7, 5, 1, 'A', '2023-12-01 16:34:50.111000', NULL);
 
 -- --------------------------------------------------------
@@ -674,8 +677,10 @@ INSERT INTO `seg_usuario_rol_aplicacion` (`codigo`, `cod_usuario`, `cod_rol_apli
 (8, 2, 4, '2023-08-24 11:36:15.612000', NULL, 'A'),
 (9, 2, 9, '2023-08-24 11:40:30.902000', NULL, 'A'),
 (10, 1, 4, '2023-08-25 10:05:38.136000', NULL, 'A'),
-(11, 3, 6, '2023-08-28 10:04:53.333000', NULL, 'A'),
-(12, 1, 10, '2023-12-01 16:34:51.603000', NULL, 'A');
+(11, 3, 6, '2023-08-28 10:04:53.333000', '2023-12-09 00:22:45.600000', 'I'),
+(12, 1, 10, '2023-12-01 16:34:51.603000', NULL, 'A'),
+(13, 3, 9, '2023-12-09 00:23:02.982000', NULL, 'A'),
+(14, 3, 10, '2023-12-09 00:23:18.027000', NULL, 'A');
 
 -- --------------------------------------------------------
 
@@ -800,9 +805,9 @@ CREATE TABLE `wp_participante` (
 --
 
 INSERT INTO `wp_participante` (`codigo`, `customer_id`, `user_id`, `username`, `first_name`, `last_name`, `email`, `date_last_active`, `date_registered`, `country`, `postcode`, `city`, `state`, `cod_persona`, `cod_subcategoria`, `cod_instancia`) VALUES
-(12, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 1, 1, 1),
-(13, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 4, 1, 2),
-(14, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 9, 1, 3);
+(12, 1, 1, 'soporte@asedinfo.com', 'VICENTE JAVIER', 'BRITO ARIAS', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 1, 1, 1),
+(13, 1, 1, 'soporte@asedinfo.com', 'DARIO XAVIER', 'BRITO LÓPEZ', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 2, 1, 1),
+(14, 1, 1, 'soporte@asedinfo.com', 'David', 'Brito', 'vjbritoa@hotmail.com', '2023-11-23 21:57:56', '2020-03-27 08:11:49', '', '', '', '', 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -825,18 +830,19 @@ CREATE TABLE `wp_puntaje` (
 --
 
 INSERT INTO `wp_puntaje` (`codigo`, `cod_modelo_puntaje`, `cod_instancia`, `cod_participante`, `cod_subcategoria`, `puntaje`, `estado`) VALUES
-(1, 1, 1, 12, 1, 8.00, 'A'),
-(2, 2, 1, 12, 1, 9.00, 'A'),
+(1, 1, 1, 12, 1, 6.59, 'A'),
+(2, 2, 1, 12, 1, 10.00, 'A'),
 (6, 1, 1, 13, 1, 6.00, 'A'),
 (7, 2, 1, 13, 1, 9.00, 'A'),
 (8, 1, 1, 14, 1, 8.00, 'A'),
 (9, 2, 1, 14, 1, 8.00, 'A'),
-(10, 1, 3, 14, 1, 6.00, 'A'),
-(11, 2, 3, 14, 1, 6.00, 'A'),
+(10, 1, 3, 14, 1, 5.90, 'A'),
+(11, 2, 3, 14, 1, 9.80, 'A'),
 (12, 1, 2, 13, 1, 8.55, 'A'),
 (13, 2, 2, 13, 1, 8.00, 'A'),
-(18, 99, 1, 12, 1, 8.50, 'A'),
-(22, 99, 2, 13, 1, 8.28, 'A');
+(18, 99, 1, 12, 1, 8.30, 'A'),
+(22, 99, 1, 13, 1, 8.28, 'A'),
+(23, 99, 1, 14, 1, 7.85, 'A');
 
 -- --------------------------------------------------------
 
@@ -1075,7 +1081,7 @@ ALTER TABLE `cat_operacion`
 -- AUTO_INCREMENT de la tabla `cat_parametro`
 --
 ALTER TABLE `cat_parametro`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=15;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_persona`
@@ -1123,7 +1129,7 @@ ALTER TABLE `seg_inicio_sesion`
 -- AUTO_INCREMENT de la tabla `seg_recurso`
 --
 ALTER TABLE `seg_recurso`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=23;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_rol_aplicacion`
@@ -1135,7 +1141,7 @@ ALTER TABLE `seg_rol_aplicacion`
 -- AUTO_INCREMENT de la tabla `seg_rol_aplicacion_recurso`
 --
 ALTER TABLE `seg_rol_aplicacion_recurso`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=37;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_sede`
@@ -1177,7 +1183,7 @@ ALTER TABLE `seg_usuario_inact_app`
 -- AUTO_INCREMENT de la tabla `seg_usuario_rol_aplicacion`
 --
 ALTER TABLE `seg_usuario_rol_aplicacion`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=13;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'TRIAL', AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `ven_cliente`
@@ -1213,7 +1219,7 @@ ALTER TABLE `wp_participante`
 -- AUTO_INCREMENT de la tabla `wp_puntaje`
 --
 ALTER TABLE `wp_puntaje`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `wp_sub_categoria`
