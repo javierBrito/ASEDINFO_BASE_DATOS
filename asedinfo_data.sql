@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-01-2024 a las 00:20:21
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 04-01-2024 a las 20:50:02
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -152,7 +152,11 @@ INSERT INTO `cat_persona` (`codigo`, `identificacion`, `cedula`, `nombres`, `ape
 (3, '1721498838', NULL, 'DAVID SANTIAGO', 'BRITO LÓPEZ', '1993-01-13 01:00:00.000000', 'VENEZUELA Y VIÑEDOS', 'davidsbritol@gmail.com', '0998069137', 'A'),
 (16, 'davidsbritol@gmail.com', 'Suscriptor', 'DAVID', 'BRITO', NULL, NULL, 'davidsbritol@gmail.com', NULL, 'A'),
 (17, 'solista-salsa@correo.com', 'Suscriptor', 'MARIA SOLISTA', '', NULL, NULL, 'solista-salsa@correo.com', '0992752367', 'A'),
-(18, 'vjbritoa@hotmail.com', 'Suscriptor', 'JAVICO PEREZ', 'DAVID RIVERA', NULL, NULL, 'vjbritoa@hotmail.com', '0992752367', 'A');
+(18, 'vjbritoa@hotmail.com', 'Suscriptor', 'JAVICO PEREZ', 'DAVID RIVERA', NULL, NULL, 'vjbritoa@hotmail.com', '0992752367', 'A'),
+(19, 'javier.brito', 'Suscriptor', 'JAVIER PAZ', '', NULL, NULL, 'javier.brito', '0992752367', 'A'),
+(20, 'darwin.turro', 'Suscriptor', 'DARWIN TURRO', '', NULL, NULL, 'darwin.turro', '0992752367', 'A'),
+(26, '1004298020', NULL, 'VICENTE', 'PEÑA', '2024-01-01 00:00:00.000000', 'VENEZUELA', 'cchimboinicial@hotmail.com', '0992752367', 'A'),
+(27, '1707025745', NULL, 'SAN', 'PAOLI', NULL, 'SAN NICOLAS', 'cchimboinicial@hotmail.com', '0992752367', 'A');
 
 -- --------------------------------------------------------
 
@@ -186,11 +190,11 @@ CREATE TABLE `cat_producto` (
 --
 
 INSERT INTO `cat_producto` (`codigo`, `cod_marca`, `cod_unidad`, `descripcion`, `precio_compra`, `precio_costo`, `precio_mayoreo`, `precio_minoreo`, `aplica_iva`, `num_existencia_actual`, `num_existencia_minima`, `imagen`, `nombre_imagen`, `path_imagen`, `estado`, `fecha_registra`, `cod_modulo`, `cod_categoria`) VALUES
-(1, NULL, NULL, 'PANTALLA NETFLIX', 0, 3.66, 3.5, 0, 0, 7, 2, NULL, NULL, NULL, 'A', '2023-12-24', 2, NULL),
+(1, NULL, NULL, 'PANTALLA NETFLIX', 0, 3.66, 3.5, 0, 0, 1, 2, NULL, NULL, NULL, 'A', '2023-12-24', 2, NULL),
 (2, NULL, NULL, 'PANTALLA NETFLIX', 0, 3.66, 3.5, 0, 0, 9999, 10, NULL, NULL, NULL, 'I', '2023-12-21', 2, NULL),
 (3, NULL, NULL, 'IPTV P X', 0, 12, 10, 0, 0, 2, 1, NULL, NULL, NULL, 'A', '2023-12-21', 2, NULL),
-(4, NULL, NULL, 'MAGISTV', 0, 8, 4.5, 0, 0, 99, 5, NULL, NULL, NULL, 'A', '2023-12-21', 2, NULL),
-(5, NULL, NULL, 'YOUTUBE', 0, 4, 2.5, 0, 0, 999, 1, NULL, NULL, NULL, 'A', '2023-12-29', 2, NULL),
+(4, NULL, NULL, 'MAGISTV', 0, 8, 4.5, 0, 0, 90, 5, NULL, NULL, NULL, 'A', '2023-12-21', 2, NULL),
+(5, NULL, NULL, 'YOUTUBE', 0, 4, 2.5, 0, 0, 992, 1, NULL, NULL, NULL, 'A', '2023-12-29', 2, NULL),
 (6, NULL, NULL, 'PANTALLA STARPLUS', 0, 3.5, 3.33, 0, 0, 999, 10, NULL, NULL, NULL, 'A', '2023-12-29', 2, NULL),
 (7, NULL, NULL, 'PANTALLA DISNEY', 0, 2.5, 2, 0, 0, 999, 10, NULL, NULL, NULL, 'A', '2023-12-29', 2, NULL),
 (8, NULL, NULL, 'PANTALLA HBOMAX', 0, 2.5, 2, 0, 0, 999, 10, NULL, NULL, NULL, 'A', '2023-12-29', 2, NULL),
@@ -216,26 +220,30 @@ CREATE TABLE `cat_transaccion` (
   `precio` float DEFAULT NULL,
   `precio_promocion` float DEFAULT NULL,
   `num_producto` int(4) NOT NULL,
-  `num_producto_adicional` int(4) DEFAULT NULL,
+  `num_producto_adicional` binary(1) DEFAULT NULL,
   `monto` float DEFAULT NULL,
   `monto_descuento` float DEFAULT NULL,
   `aplica_iva` int(1) DEFAULT 1,
   `estado` varchar(1) NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date DEFAULT NULL,
-  `fecha_caduca` date DEFAULT NULL,
+  `fecha_cambia` date DEFAULT NULL,
   `fecha_registra` date NOT NULL,
   `num_mes` int(4) DEFAULT NULL,
   `cod_modulo` int(6) NOT NULL,
-  `cod_operacion` int(6) DEFAULT NULL
+  `cod_operacion` int(6) DEFAULT NULL,
+  `clave_cuenta` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cat_transaccion`
 --
 
-INSERT INTO `cat_transaccion` (`codigo`, `cod_cliente`, `cod_producto`, `descripcion`, `precio`, `precio_promocion`, `num_producto`, `num_producto_adicional`, `monto`, `monto_descuento`, `aplica_iva`, `estado`, `fecha_inicio`, `fecha_fin`, `fecha_caduca`, `fecha_registra`, `num_mes`, `cod_modulo`, `cod_operacion`) VALUES
-(1, 2, 1, 'PANTALLA NETFLIX', 3.66, NULL, 1, NULL, 10.98, NULL, 0, 'I', '2023-12-19', '2024-03-27', NULL, '2023-12-27', 3, 2, 1);
+INSERT INTO `cat_transaccion` (`codigo`, `cod_cliente`, `cod_producto`, `descripcion`, `precio`, `precio_promocion`, `num_producto`, `num_producto_adicional`, `monto`, `monto_descuento`, `aplica_iva`, `estado`, `fecha_inicio`, `fecha_fin`, `fecha_cambia`, `fecha_registra`, `num_mes`, `cod_modulo`, `cod_operacion`, `clave_cuenta`) VALUES
+(1, 2, 1, 'PANTALLA NETFLIX', 3.66, NULL, 1, NULL, 3.66, NULL, 0, 'A', '2023-12-06', '2024-01-06', NULL, '2024-01-04', 1, 2, 1, 'pruebasss'),
+(2, 3, 4, 'OTRA PANTALLA', 8, NULL, 1, NULL, 8, NULL, 0, 'A', '2024-01-03', '2024-02-03', '2024-01-06', '2024-01-04', 1, 2, 1, 'cjcjcjjjjjjjjjjjj'),
+(3, 1, 5, 'NUEVA TRANSACCION', 4, NULL, 1, NULL, 4, NULL, 0, 'A', '2024-01-04', '2024-02-04', NULL, '2024-01-04', 1, 2, 1, 'pruebasss'),
+(4, 9, 4, 'MATRIZ', 8, NULL, 1, NULL, 8, NULL, 0, 'A', '2024-01-04', '2024-02-04', '2024-01-04', '2024-01-04', 1, 2, 1, '');
 
 -- --------------------------------------------------------
 
@@ -804,7 +812,9 @@ CREATE TABLE `ven_cliente` (
 INSERT INTO `ven_cliente` (`codigo`, `tipo_cliente`, `fecha_inicio`, `cod_persona`, `estado`) VALUES
 (1, 'regular', '2023-08-21 00:00:00.000000', 1, 'A'),
 (2, 'mayorista', '2023-08-25 00:00:00.000000', 2, 'A'),
-(3, 'ocasional', '2023-08-28 00:00:00.000000', 3, 'A');
+(3, 'ocasional', '2023-08-28 00:00:00.000000', 3, 'A'),
+(9, 'REGULAR', '2024-01-04 00:00:00.000000', 26, 'A'),
+(10, 'REGULAR', '2024-01-04 00:00:00.000000', 27, 'A');
 
 -- --------------------------------------------------------
 
@@ -935,7 +945,9 @@ CREATE TABLE `wp_participante` (
 INSERT INTO `wp_participante` (`codigo`, `customer_id`, `user_id`, `username`, `first_name`, `last_name`, `email`, `date_last_active`, `date_registered`, `country`, `postcode`, `city`, `state`, `cod_persona`, `cod_subcategoria`, `cod_instancia`, `cod_estado_competencia`, `num_puntaje_juez`) VALUES
 (8, 24, 13, 'david.brito', 'DAVID', 'BRITO', 'davidsbritol@gmail.com', '2024-01-01 18:53:49', '2023-12-24 21:29:44', NULL, NULL, NULL, '', 16, 1, 1, 1, 0),
 (9, 0, 0, '', 'MARIA SOLISTA', '', 'davidsbritol@gmail.com', '2024-01-01 23:05:00', NULL, 'ECUADOR', NULL, NULL, '', 17, 1, 1, 1, 0),
-(10, 0, 0, '', 'JAVICO PEREZ', 'DAVID RIVERA', 'davidsbritol@gmail.com', '2024-01-01 23:06:00', NULL, 'ECUADOR', NULL, NULL, '', 18, 2, 1, 1, 0);
+(10, 0, 0, '', 'JAVICO PEREZ', 'DAVID RIVERA', 'davidsbritol@gmail.com', '2024-01-01 23:06:00', NULL, 'ECUADOR', NULL, NULL, '', 18, 2, 1, 1, 0),
+(11, 0, 0, '', 'JAVIER PAZ', '', 'davidsbritol@gmail.com', '2024-01-02 15:37:00', NULL, 'ECUADOR', NULL, NULL, '', 19, 1, 1, 1, 0),
+(12, 0, 0, '', 'DARWIN TURRO', '', 'davidsbritol@gmail.com', '2024-01-02 21:55:00', NULL, 'ECUADOR', NULL, NULL, '', 20, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1203,7 +1215,7 @@ ALTER TABLE `cat_parametro`
 -- AUTO_INCREMENT de la tabla `cat_persona`
 --
 ALTER TABLE `cat_persona`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_producto`
@@ -1215,7 +1227,7 @@ ALTER TABLE `cat_producto`
 -- AUTO_INCREMENT de la tabla `cat_transaccion`
 --
 ALTER TABLE `cat_transaccion`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `seg_aplicacion`
@@ -1305,7 +1317,7 @@ ALTER TABLE `seg_usuario_rol_aplicacion`
 -- AUTO_INCREMENT de la tabla `ven_cliente`
 --
 ALTER TABLE `ven_cliente`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `wp_categoria`
@@ -1335,7 +1347,7 @@ ALTER TABLE `wp_modelo_puntaje`
 -- AUTO_INCREMENT de la tabla `wp_participante`
 --
 ALTER TABLE `wp_participante`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `wp_puntaje`
